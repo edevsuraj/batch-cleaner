@@ -9,6 +9,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+<!-- Google AdSense: replace ca-pub-0000000000000000 with your real Publisher ID after approval -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0000000000000000" crossorigin="anonymous"></script> -->
+<meta name="google-adsense-account" content="ca-pub-0000000000000000" />
 <style>
 :root{
   --bg:#060a13; --glass:rgba(255,255,255,.045); --glass2:rgba(255,255,255,.07);
@@ -114,6 +117,11 @@ code.inline{font-family:var(--mono);background:rgba(255,255,255,.08);padding:2px
 kbd{font-family:var(--mono);background:#1a2440;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;padding:1px 7px;font-size:11px}
 .sec{font-size:15px;font-weight:700;letter-spacing:-.3px;margin:20px 0 4px;display:flex;align-items:center;gap:8px}
 .sec small{font-weight:500;color:var(--muted);font-size:12.5px}
+/* ADS */
+.ad-slot{margin:16px 0;min-height:90px;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.02);border:1px dashed rgba(255,255,255,.14);border-radius:14px;
+  color:var(--muted);font-size:12px}
+.ad-slot ins{width:100%}
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);z-index:99;
   background:#0c1a12;border:1px solid rgba(0,255,136,.4);color:var(--green);
   padding:11px 18px;border-radius:12px;font-weight:700;font-size:14px;opacity:0;pointer-events:none;transition:.3s;
@@ -345,8 +353,16 @@ exit /b 0</pre>
     </div>
   </div>
 
-  <div class="sec">⚙️ Cleans <small>— photos &amp; documents ko touch nahi karta</small></div>
-  <div class="strip">
+  <!-- Ad slot 1: uncomment after AdSense approval, replace ca-pub-XXXX + data-ad-slot -->
+  <div class="ad-slot">
+    <!--
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0000000000000000" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    -->
+    <span>Advertisement</span>
+  </div>
+
+  <div class="sec">⚙️ Cleans <small>— photos &amp; documents ko touch nahi karta</small></div>  <div class="strip">
     <div class="mini"><div class="ico">🗑️</div><b>User Temp</b><span>%TEMP% junk</span></div>
     <div class="mini"><div class="ico">🧊</div><b>Win Temp</b><span>system junk</span></div>
     <div class="mini"><div class="ico">🚀</div><b>Prefetch</b><span>fast boot</span></div>
@@ -364,13 +380,22 @@ exit /b 0</pre>
 
   <div class="warn">⚠️ Sirf Temp / Cache / Logs / Bin delete hota hai. Pehli baar se pehle kaam save + browser close kar lo. Hafte me 1 baar enough.</div>
 
+  <!-- Ad slot 2: uncomment after AdSense approval -->
+  <div class="ad-slot">
+    <!--
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0000000000000000" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    -->
+    <span>Advertisement</span>
+  </div>
+
 <footer>
   <a class="explore-card" href="https://edevsuraj.github.io/explore-our-apps-and-extensions/" target="_blank" rel="noopener">
     <span class="explore-icon">✨</span>
     <span class="explore-text"><strong>Explore more apps and extensions</strong><small>Free tools and utilities by the same maker — check them out</small></span>
     <span class="explore-arrow">→</span>
   </a>
-  <p class="foot-note">Made with ⚡ for a faster PC</p>
+  <p class="foot-note">Made with ⚡ for a faster PC • <a href="./privacy.html" style="color:var(--muted)">Privacy Policy</a></p>
 </footer>
 </div>
 
