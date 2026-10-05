@@ -37,6 +37,8 @@ nav{position:sticky;top:12px;z-index:50;margin:12px auto 0;max-width:1120px}
   border:1px solid var(--border);border-radius:16px;padding:10px 14px;
   box-shadow:0 12px 40px rgba(0,0,0,.45)}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:15.5px;letter-spacing:-.2px}
+.brand-link{display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none}
+.brand-link:hover{color:#fff}
 .logo{width:34px;height:34px;display:grid;place-items:center;font-size:18px;border-radius:10px;
   background:linear-gradient(135deg,var(--green),var(--cyan));box-shadow:0 6px 22px rgba(0,255,136,.4)}
 .nav-links{display:flex;gap:20px;font-size:13.5px;color:var(--muted);font-weight:500}
@@ -114,16 +116,87 @@ kbd{font-family:var(--mono);background:#1a2440;border:1px solid var(--border);bo
 .sec small{font-weight:500;color:var(--muted);font-size:12.5px}
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);z-index:99;
   background:#0c1a12;border:1px solid rgba(0,255,136,.4);color:var(--green);
-  padding:11px 18px;border-radius:12px;font-weight:700;font-size:14px;opacity:0;pointer-events:none;transition:.3s}
+  padding:11px 18px;border-radius:12px;font-weight:700;font-size:14px;opacity:0;pointer-events:none;transition:.3s;
+  max-width:calc(100vw - 32px);text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-footer{border-top:1px solid var(--border);margin:22px 0 0;padding:20px 0 34px;text-align:center;color:var(--muted);font-size:12.5px}
-footer a{color:var(--green);font-weight:700;text-decoration:none}
-footer a:hover{text-decoration:underline}
+/* FOOTER — Explore banner */
+footer{border-top:1px solid var(--border);margin:22px 0 0;padding:22px 0 34px;color:var(--muted);font-size:12.5px}
+.explore-card{position:relative;display:flex;align-items:center;gap:14px;text-decoration:none;text-align:left;
+  background:linear-gradient(135deg,rgba(0,255,136,.14),rgba(0,208,255,.12) 50%,rgba(167,139,250,.14));
+  border:1px solid rgba(0,255,136,.45);border-radius:18px;padding:16px 18px;overflow:hidden;
+  box-shadow:0 0 0 1px rgba(0,255,136,.08),0 12px 42px rgba(0,255,136,.18);
+  animation:glowPulse 2.6s ease-in-out infinite}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 0 1px rgba(0,255,136,.08),0 12px 42px rgba(0,255,136,.16)}50%{box-shadow:0 0 0 1px rgba(0,255,136,.22),0 12px 52px rgba(0,255,136,.32)}}
+.explore-card::before{content:"";position:absolute;top:0;left:-60%;width:50%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.16),transparent);
+  animation:shine 3.2s linear infinite}
+@keyframes shine{0%{left:-60%}60%,100%{left:130%}}
+.explore-card:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.explore-card:hover .explore-arrow{transform:translateX(6px)}
+.explore-icon{flex:none;width:44px;height:44px;display:grid;place-items:center;font-size:22px;border-radius:13px;
+  background:linear-gradient(135deg,var(--green),var(--cyan));box-shadow:0 6px 22px rgba(0,255,136,.45)}
+.explore-text{flex:1;min-width:0}
+.explore-text strong{display:block;color:#fff;font-size:15px;font-weight:700;letter-spacing:-.2px}
+.explore-text small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.explore-arrow{flex:none;width:38px;height:38px;display:grid;place-items:center;font-size:18px;font-weight:800;
+  color:#03130a;background:linear-gradient(135deg,var(--green),var(--cyan));border-radius:50%;transition:transform .2s}
+.foot-note{text-align:center;margin-top:14px;font-size:12px}
+/* RESPONSIVE — tablet + mobile full width simple */
+body{overflow-x:hidden}
+img,pre,.term{max-width:100%}
+.grid>*{min-width:0}
+.term-title{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+@media(max-width:900px){
+  .wrap{padding:0 12px;max-width:100%}
+  nav{max-width:100%;padding:0 12px;top:8px;margin:8px auto 0}
+  nav .wrap{padding:0;max-width:100%}
+  .grid{grid-template-columns:1fr;gap:12px;margin:16px 0 6px}
+  .grid .card{width:100%;max-width:100%;margin:0}
+  .term,.term-body,pre{width:100%;max-width:100%}
+  .term-body{overflow-wrap:anywhere;word-break:break-word}
+  pre{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .scan{flex-wrap:wrap;gap:4px}
+}
+@media(max-width:640px){
+  .wrap{padding:0 8px}
+  nav{padding:0 8px}
+  .nav-inner{padding:8px 10px;border-radius:14px}
+  .brand{font-size:13.5px;gap:8px;min-width:0}
+  .logo{width:30px;height:30px;font-size:16px;border-radius:9px;flex:none}
+  .btn{white-space:normal}
+  .btn-sm{padding:8px 12px;font-size:12.5px}
+  nav .btn-sm{flex:none}
+  .hero{padding:30px 0 4px}
+  h1{letter-spacing:-.8px}
+  .sub{font-size:14px;margin-bottom:18px}
+  .hero-btns{flex-direction:column;align-items:stretch}
+  .hero-btns .btn{width:100%;max-width:100%}
+  .chips{gap:8px}
+  .chip{font-size:12px;padding:6px 12px}
+  .card{padding:12px;border-radius:14px}
+  .card-top{align-items:flex-start}
+  .row-btns{width:100%}
+  .row-btns .btn{flex:1;min-width:0}
+  .term{border-radius:12px}
+  .term-body{font-size:11.5px;padding:12px;min-height:230px;line-height:1.65}
+  pre{font-size:11px;padding:12px;max-height:300px;border-radius:12px}
+  .sec{flex-wrap:wrap}
+  .explore-card{padding:14px;gap:12px;border-radius:16px}
+  .explore-icon{width:38px;height:38px;font-size:19px}
+  .explore-text strong{font-size:13.8px}
+  .explore-text small{font-size:11.8px}
+  .explore-arrow{width:34px;height:34px;font-size:16px}
+}
+@media(max-width:380px){
+  .brand{font-size:12.5px}
+  nav .btn-sm{padding:7px 10px;font-size:11.5px}
+  h1{font-size:28px}
+}
 </style>
 </head>
 <body>
 <nav><div class="wrap"><div class="nav-inner">
-  <div class="brand"><div class="logo">⚡</div> PC Deep Cleaner</div>
+  <div class="brand"><a class="brand-link" href="./" title="PC Deep Cleaner — Home"><span class="logo">⚡</span> PC Deep Cleaner</a></div>
   <div class="nav-links"><a href="#demo">Demo</a><a href="#code">Code</a><a href="#how">Steps</a></div>
   <a class="btn btn-primary btn-sm" href="clean.bat" download="PC-Cleaner.bat" data-dl>⬇ Download .BAT</a>
 </div></div></nav>
@@ -263,6 +336,9 @@ echo   CLEANING COMPLETE! PC is now faster.
 echo  ===============================================
 echo   Tip: Restart your PC once for best speed.
 echo.
+echo   Showing a quick question...
+powershell -NoProfile -ExecutionPolicy Bypass -Command "Add-Type -AssemblyName System.Windows.Forms; $ans=[System.Windows.Forms.MessageBox]::Show('Do you want to explore more free apps and extensions?','PC Deep Cleaner - Explore More',4,64); if ($ans -eq 'Yes') { Start-Process 'https://edevsuraj.github.io/explore-our-apps-and-extensions/' }"
+echo.
 pause
 exit /b 0</pre>
       <p class="hint">Copy → Notepad → Save As <code class="inline">PC-Cleaner.bat</code> (All Files) → Right-click → <kbd>Run as administrator</kbd></p>
@@ -288,7 +364,14 @@ exit /b 0</pre>
 
   <div class="warn">⚠️ Sirf Temp / Cache / Logs / Bin delete hota hai. Pehli baar se pehle kaam save + browser close kar lo. Hafte me 1 baar enough.</div>
 
-<footer><a href="https://edevsuraj.github.io/explore-our-apps-and-extensions/" target="_blank" rel="noopener">explore our more apps and extensions</a></footer>
+<footer>
+  <a class="explore-card" href="https://edevsuraj.github.io/explore-our-apps-and-extensions/" target="_blank" rel="noopener">
+    <span class="explore-icon">✨</span>
+    <span class="explore-text"><strong>Explore more apps and extensions</strong><small>Free tools and utilities by the same maker — check them out</small></span>
+    <span class="explore-arrow">→</span>
+  </a>
+  <p class="foot-note">Made with ⚡ for a faster PC</p>
+</footer>
 </div>
 
 <div class="toast" id="toast">Copied! ✅</div>

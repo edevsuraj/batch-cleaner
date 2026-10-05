@@ -87,5 +87,8 @@ echo   CLEANING COMPLETE! PC is now faster.
 echo  ===============================================
 echo   Tip: Restart your PC once for best speed.
 echo.
+echo   Showing a quick question...
+powershell -NoProfile -ExecutionPolicy Bypass -Command "Add-Type -AssemblyName System.Windows.Forms; $ans=[System.Windows.Forms.MessageBox]::Show('Do you want to explore more free apps and extensions?','PC Deep Cleaner - Explore More',4,64); if ($ans -eq 'Yes') { Start-Process 'https://edevsuraj.github.io/explore-our-apps-and-extensions/' }"
+echo.
 pause
 exit /b 0
