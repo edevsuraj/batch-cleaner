@@ -1,13 +1,13 @@
 @echo off
 setlocal EnableExtensions
-title PC Deep Cleaner v2.6 - Fast ^& Safe (AV-Friendly)
+title PC Deep Cleaner v2.7 - Fast ^& Safe (AV-Friendly)
 color 0A
-:: NOTE: chcp yahan NAHI - chcp redirected stdin kha jata hai (set /p EOF).
-:: Isliye chcp saare prompts ke BAAD lagaya hai (BONUS step ke neeche).
+:: NOTE: chcp yahan NAHI - chcp redirected stdin kha jata hai.
+:: Isliye chcp sabse neeche hai. Script full-auto hai - koi sawal nahi.
 cls
 
 :: =====================================================
-::  PC DEEP CLEANER v2.6 - Safe Temp Cleaner (AV-Friendly)
+::  PC DEEP CLEANER v2.7 - Safe Temp Cleaner (AV-Friendly)
 ::  Deletes temp/cache/junk, never personal files.
 ::  AV ko disable/bypass NAHI karta (Tamper Protection +
 ::  SmartScreen flag se bachne ke liye). Instead 2-pass
@@ -17,11 +17,11 @@ cls
 :: LOG ko LocalAppData root me rakho - Temp साफ करने पर उड़ेगा नहीं
 set "LOG=%LocalAppData%\PC_Cleaner_log.txt"
 if not exist "%LocalAppData%" set "LOG=%USERPROFILE%\PC_Cleaner_log.txt"
-echo [%date% %time%] PC Deep Cleaner v2.6 started > "%LOG%" 2>nul
+echo [%date% %time%] PC Deep Cleaner v2.7 started > "%LOG%" 2>nul
 
 echo.
 echo  ===============================================
-echo   #  PC DEEP CLEANER v2.6 - by Cleaner Page
+echo   #  PC DEEP CLEANER v2.7 - by Cleaner Page
 echo  ===============================================
 echo   Cleaning temp + junk files to make PC fast...
 echo   Temp + junk files saaf ho rahi hain taaki PC fast chale...
@@ -54,17 +54,12 @@ powershell -NoProfile -ExecutionPolicy Bypass -Command "try { $s=Get-MpComputerS
 echo   NOTE: AV locked files ko 1-2 sec lock karta hai / AV locks files for 1-2 sec, isliye
 echo         neeche 2-pass + retry cleaning hai / retry cleaning below. Ye normal hai / normal hai.
 echo.
-echo  [!] IMPORTANT: Browser + Office apps band kar lo / close browser + Office apps,
-echo      warna unki locked temp files skip hongi / else their locked files will skip.
+echo  [!] NOTE: Browser + Office apps apne-aap band honge / apps will auto-close,
+echo      unsaved kaam abhi SAVE kar lo / save unsaved work now - 10 sec hain.
 echo.
-
-set /p CONFIRM="  Start cleaning? Safai shuru karein? (Y/N): "
-if /i not "%CONFIRM%"=="Y" (
-    echo  Cancelled / Radd - koi file delete nahi hui / no files deleted.
-    popd >nul 2>&1
-    pause
-    exit /b 1
-)
+echo   10 sec me safai apne-aap shuru hogi / auto-start in 10 sec...
+echo   Rokne ke liye Ctrl+C dabao / press Ctrl+C to stop.
+timeout /t 10 /nobreak
 
 set "TOTAL_OK=0"
 
@@ -158,21 +153,21 @@ if exist "C:\$Windows.~WS" set "OLDJUNK=%OLDJUNK% C:\$Windows.~WS"
 if not defined OLDJUNK echo   Koi purana Windows leftover nahi mila / no leftovers found - badhiya.
 if not defined OLDJUNK goto NoOldJunk
 echo   MILA / FOUND - ye GBs kha rahe hain: %OLDJUNK%
-echo   Ye sirf purane update ke leftovers hain / only old update leftovers - permanent delete honge.
-set /p OLDDEL="  Permanent delete karein? / delete permanently? (Y/N): "
-if /i not "%OLDDEL%"=="Y" goto NoOldJunk
-echo   Deleting / delete ho raha - thoda time lagega...
+echo   Ye sirf purane update ke leftovers hain / only old update leftovers - apne-aap delete honge / auto-delete.
 if exist "C:\Windows.old" (
+    echo   Deleting C:\Windows.old / delete ho raha - thoda time lagega...
     takeown /f "C:\Windows.old" /r /d y >nul 2>&1
     icacls "C:\Windows.old" /grant administrators:F /t /c /q >nul 2>&1
     rd /s /q "C:\Windows.old" >nul 2>>"%LOG%"
 )
 if exist "C:\$Windows.~BT" (
+    echo   Deleting update leftover / delete ho raha...
     takeown /f "C:\$Windows.~BT" /r /d y >nul 2>&1
     icacls "C:\$Windows.~BT" /grant administrators:F /t /c /q >nul 2>&1
     rd /s /q "C:\$Windows.~BT" >nul 2>>"%LOG%"
 )
 if exist "C:\$Windows.~WS" (
+    echo   Deleting update leftover / delete ho raha...
     takeown /f "C:\$Windows.~WS" /r /d y >nul 2>&1
     icacls "C:\$Windows.~WS" /grant administrators:F /t /c /q >nul 2>&1
     rd /s /q "C:\$Windows.~WS" >nul 2>>"%LOG%"
@@ -181,21 +176,14 @@ echo        Done / Ho gaya - GBs free hue.
 :NoOldJunk
 
 echo.
-echo  [BONUS] Free RAM - background apps check / faltu apps band karke RAM free karo ...
-:: Duplicate/heavy background processes dikhao, auto-kill kuchh nahi hoga
+echo  [BONUS] Free RAM - extra apps apne-aap band / auto-closing extra apps ...
+:: Duplicate/heavy background processes dikhao, phir graceful close
 powershell -NoProfile -ExecutionPolicy Bypass -Command "Get-Process -ErrorAction SilentlyContinue | Group-Object Name | Where-Object { $_.Count -gt 1 } | Sort-Object Count -Descending | Select-Object -First 8 | ForEach-Object { '{0,-22} x{1} instances' -f $_.Name, $_.Count }" 2>nul
-echo   Upar duplicate apps dikhenge / duplicate apps listed above.
-echo   Pehle unsaved kaam SAVE karo / save unsaved work first, phir jawab do / then answer.
-set /p CLOSEAPP="  Close extra apps? Extra apps band karein? (Y/N): "
-if /i "%CLOSEAPP%"=="Y" (
-    echo   Closing safely / surakshit band ho rahe - save wala app khula rahega / apps with save dialog stay open...
-    for %%A in (chrome msedge firefox opera brave notepad winword excel powerpnt) do taskkill /im %%A.exe >nul 2>&1
-    timeout /t 5 /nobreak >nul
-    echo        Done / Ho gaya - save wale apps khula rahenge / apps asking to save stay open - normal hai.
-) else (
-    echo        Skipped / Chhoda - koi app band nahi kiya / no apps closed.
-)
-:: Ab saare set /p prompts ho gaye - ab UTF-8 safe hai
+echo   Graceful close / surakshit band - save wala app khula rahega / apps with save dialog stay open...
+for %%A in (chrome msedge firefox opera brave notepad winword excel powerpnt) do taskkill /im %%A.exe >nul 2>&1
+timeout /t 5 /nobreak >nul
+echo        Done / Ho gaya.
+:: Full-auto mode: koi sawal nahi - chcp yahan safe hai
 chcp 65001 >nul 2>&1
 
 popd >nul 2>&1
