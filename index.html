@@ -260,14 +260,14 @@ img,pre,.term{max-width:100%}
       </div>
 <pre id="batCode">@echo off
 setlocal EnableExtensions
-title PC Deep Cleaner v2.8 - Fast ^&amp; Safe (AV-Friendly)
+title PC Deep Cleaner v2.9 - Fast ^&amp; Safe (AV-Friendly)
 color 0A
 :: NOTE: chcp yahan NAHI - chcp redirected stdin kha jata hai.
 :: Isliye chcp sabse neeche hai. Script full-auto hai - koi sawal nahi.
 cls
 
 :: =====================================================
-::  PC DEEP CLEANER v2.8 - Safe Temp Cleaner (AV-Friendly)
+::  PC DEEP CLEANER v2.9 - Safe Temp Cleaner (AV-Friendly)
 ::  Deletes temp/cache/junk, never personal files.
 ::  AV ko disable/bypass NAHI karta (Tamper Protection +
 ::  SmartScreen flag se bachne ke liye). Instead 2-pass
@@ -277,11 +277,11 @@ cls
 :: LOG ko LocalAppData root me rakho - Temp साफ करने पर उड़ेगा नहीं
 set "LOG=%LocalAppData%\PC_Cleaner_log.txt"
 if not exist "%LocalAppData%" set "LOG=%USERPROFILE%\PC_Cleaner_log.txt"
-echo [%date% %time%] PC Deep Cleaner v2.8 started &gt; "%LOG%" 2&gt;nul
+echo [%date% %time%] PC Deep Cleaner v2.9 started &gt; "%LOG%" 2&gt;nul
 
 echo.
 echo  ===============================================
-echo   #  PC DEEP CLEANER v2.8 - by Cleaner Page
+echo   #  PC DEEP CLEANER v2.9 - by Cleaner Page
 echo  ===============================================
 echo   Cleaning temp + junk files to make PC fast...
 echo   Temp + junk files saaf ho rahi hain taaki PC fast chale...
@@ -334,6 +334,7 @@ echo  [3/7] Cleaning Prefetch / Prefetch saaf - safe: sirf purani .pf, only old 
 if exist "C:\Windows\Prefetch" (
     attrib -r -h -s "C:\Windows\Prefetch\*.pf" &gt;nul 2&gt;&amp;1
     del /q /f "C:\Windows\Prefetch\*.pf" &gt;nul 2&gt;&gt;"%LOG%"
+    if exist "C:\Windows\Prefetch\ReadyBoot" del /q /f "C:\Windows\Prefetch\ReadyBoot\*.etl" &gt;nul 2&gt;&gt;"%LOG%"
     echo        Done / Ho gaya. ^(kuchh .pf use me honge - skip normal hai / some skip - normal^)
     set /a TOTAL_OK+=1
 ) else (
@@ -571,7 +572,7 @@ function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 async function runSim(){
   if(running) return; running = true;
   runBtn.disabled = true; runBtn.style.opacity=.6;
-  term.innerHTML = '  <span class="green">PC DEEP CLEANER v2.8 — Starting...</span>\n  Checking admin rights... <span class="green">[OK]</span>\n\n';
+  term.innerHTML = '  <span class="green">PC DEEP CLEANER v2.9 — Starting...</span>\n  Checking admin rights... <span class="green">[OK]</span>\n\n';
   let scanned = 0;
   for(let i=0;i<steps.length;i++){
     term.innerHTML += `<span class="white">${esc(steps[i][0])}</span>\n`;
