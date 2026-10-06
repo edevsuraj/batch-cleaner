@@ -1,13 +1,13 @@
 @echo off
 setlocal EnableExtensions
-title PC Deep Cleaner v2.9 - Fast ^& Safe (AV-Friendly)
+title PC Deep Cleaner v3.0 - Fast ^& Safe (AV-Friendly)
 color 0A
 :: NOTE: chcp yahan NAHI - chcp redirected stdin kha jata hai.
 :: Isliye chcp sabse neeche hai. Script full-auto hai - koi sawal nahi.
 cls
 
 :: =====================================================
-::  PC DEEP CLEANER v2.9 - Safe Temp Cleaner (AV-Friendly)
+::  PC DEEP CLEANER v3.0 - Safe Temp Cleaner (AV-Friendly)
 ::  Deletes temp/cache/junk, never personal files.
 ::  AV ko disable/bypass NAHI karta (Tamper Protection +
 ::  SmartScreen flag se bachne ke liye). Instead 2-pass
@@ -17,11 +17,11 @@ cls
 :: LOG ko LocalAppData root me rakho - Temp साफ करने पर उड़ेगा नहीं
 set "LOG=%LocalAppData%\PC_Cleaner_log.txt"
 if not exist "%LocalAppData%" set "LOG=%USERPROFILE%\PC_Cleaner_log.txt"
-echo [%date% %time%] PC Deep Cleaner v2.9 started > "%LOG%" 2>nul
+echo [%date% %time%] PC Deep Cleaner v3.0 started > "%LOG%" 2>nul
 
 echo.
 echo  ===============================================
-echo   #  PC DEEP CLEANER v2.9 - by Cleaner Page
+echo   #  PC DEEP CLEANER v3.0 - by Cleaner Page
 echo  ===============================================
 echo   Cleaning temp + junk files to make PC fast...
 echo   Temp + junk files saaf ho rahi hain taaki PC fast chale...
@@ -99,6 +99,9 @@ del /q /f "%LocalAppData%\Microsoft\Windows\Explorer\thumbcache*.db" >nul 2>>"%L
 attrib -r -h -s "%LocalAppData%\Microsoft\Windows\Explorer\iconcache*.db" >nul 2>&1
 del /q /f "%LocalAppData%\Microsoft\Windows\Explorer\iconcache*.db" >nul 2>>"%LOG%"
 start "" explorer.exe >nul 2>&1
+timeout /t 2 /nobreak >nul
+tasklist 2>nul | find /i "explorer.exe" >nul 2>&1
+if errorlevel 1 start "" explorer.exe >nul 2>&1
 del /q /f /s "%SystemRoot%\Logs\*.log" >nul 2>>"%LOG%"
 del /q /f "%SystemRoot%\*.log" >nul 2>>"%LOG%"
 :: CBS logs GBs me ho sakte hain - sirf .log saaf karo, folder mat udao
