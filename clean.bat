@@ -1,13 +1,13 @@
 @echo off
 setlocal EnableExtensions
-title PC Deep Cleaner v2.5 - Fast ^& Safe (AV-Friendly)
+title PC Deep Cleaner v2.6 - Fast ^& Safe (AV-Friendly)
 color 0A
 :: NOTE: chcp yahan NAHI - chcp redirected stdin kha jata hai (set /p EOF).
 :: Isliye chcp saare prompts ke BAAD lagaya hai (BONUS step ke neeche).
 cls
 
 :: =====================================================
-::  PC DEEP CLEANER v2.5 - Safe Temp Cleaner (AV-Friendly)
+::  PC DEEP CLEANER v2.6 - Safe Temp Cleaner (AV-Friendly)
 ::  Deletes temp/cache/junk, never personal files.
 ::  AV ko disable/bypass NAHI karta (Tamper Protection +
 ::  SmartScreen flag se bachne ke liye). Instead 2-pass
@@ -17,11 +17,11 @@ cls
 :: LOG ko LocalAppData root me rakho - Temp साफ करने पर उड़ेगा नहीं
 set "LOG=%LocalAppData%\PC_Cleaner_log.txt"
 if not exist "%LocalAppData%" set "LOG=%USERPROFILE%\PC_Cleaner_log.txt"
-echo [%date% %time%] PC Deep Cleaner v2.5 started > "%LOG%" 2>nul
+echo [%date% %time%] PC Deep Cleaner v2.6 started > "%LOG%" 2>nul
 
 echo.
 echo  ===============================================
-echo   #  PC DEEP CLEANER v2.5 - by Cleaner Page
+echo   #  PC DEEP CLEANER v2.6 - by Cleaner Page
 echo  ===============================================
 echo   Cleaning temp + junk files to make PC fast...
 echo   Temp + junk files saaf ho rahi hain taaki PC fast chale...
@@ -145,6 +145,40 @@ echo  [7/7] Final touch - Delivery Optimization + Minidump saaf / final cleaning
 del /q /f /s "C:\Windows\SoftwareDistribution\DataStore\Logs\*.log" >nul 2>>"%LOG%"
 if exist "%SystemRoot%\Minidump" del /q /f "%SystemRoot%\Minidump\*" >nul 2>>"%LOG%"
 echo        Done / Ho gaya.
+
+echo.
+echo  [8/8] Full-disk check / pura disk check - purane Windows leftovers ...
+echo   Note: del = permanent delete / Recycle Bin me nahi jata + Bin bhi khali hogi.
+echo   Drives ka hisab / drive space report:
+powershell -NoProfile -ExecutionPolicy Bypass -Command "Get-PSDrive -PSProvider FileSystem | ForEach-Object { $f=[math]::Round($_.Free/1GB,1); $u=[math]::Round($_.Used/1GB,1); Write-Host ('  Drive '+$_.Name+': '+$f+' GB free / '+$u+' GB used') }" 2>nul
+set "OLDJUNK="
+if exist "C:\Windows.old" set "OLDJUNK=C:\Windows.old"
+if exist "C:\$Windows.~BT" set "OLDJUNK=%OLDJUNK% C:\$Windows.~BT"
+if exist "C:\$Windows.~WS" set "OLDJUNK=%OLDJUNK% C:\$Windows.~WS"
+if not defined OLDJUNK echo   Koi purana Windows leftover nahi mila / no leftovers found - badhiya.
+if not defined OLDJUNK goto NoOldJunk
+echo   MILA / FOUND - ye GBs kha rahe hain: %OLDJUNK%
+echo   Ye sirf purane update ke leftovers hain / only old update leftovers - permanent delete honge.
+set /p OLDDEL="  Permanent delete karein? / delete permanently? (Y/N): "
+if /i not "%OLDDEL%"=="Y" goto NoOldJunk
+echo   Deleting / delete ho raha - thoda time lagega...
+if exist "C:\Windows.old" (
+    takeown /f "C:\Windows.old" /r /d y >nul 2>&1
+    icacls "C:\Windows.old" /grant administrators:F /t /c /q >nul 2>&1
+    rd /s /q "C:\Windows.old" >nul 2>>"%LOG%"
+)
+if exist "C:\$Windows.~BT" (
+    takeown /f "C:\$Windows.~BT" /r /d y >nul 2>&1
+    icacls "C:\$Windows.~BT" /grant administrators:F /t /c /q >nul 2>&1
+    rd /s /q "C:\$Windows.~BT" >nul 2>>"%LOG%"
+)
+if exist "C:\$Windows.~WS" (
+    takeown /f "C:\$Windows.~WS" /r /d y >nul 2>&1
+    icacls "C:\$Windows.~WS" /grant administrators:F /t /c /q >nul 2>&1
+    rd /s /q "C:\$Windows.~WS" >nul 2>>"%LOG%"
+)
+echo        Done / Ho gaya - GBs free hue.
+:NoOldJunk
 
 echo.
 echo  [BONUS] Free RAM - background apps check / faltu apps band karke RAM free karo ...
