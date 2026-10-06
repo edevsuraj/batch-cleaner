@@ -1,12 +1,13 @@
 @echo off
 setlocal EnableExtensions
-title PC Deep Cleaner v2.3 - Fast ^& Safe (AV-Friendly)
+title PC Deep Cleaner v2.4 - Fast ^& Safe (AV-Friendly)
 color 0A
-chcp 65001 >nul 2>&1
+:: NOTE: chcp yahan NAHI - chcp redirected stdin kha jata hai (set /p EOF).
+:: Isliye chcp saare prompts ke BAAD lagaya hai (BONUS step ke neeche).
 cls
 
 :: =====================================================
-::  PC DEEP CLEANER v2.3 - Safe Temp Cleaner (AV-Friendly)
+::  PC DEEP CLEANER v2.4 - Safe Temp Cleaner (AV-Friendly)
 ::  Deletes temp/cache/junk, never personal files.
 ::  AV ko disable/bypass NAHI karta (Tamper Protection +
 ::  SmartScreen flag se bachne ke liye). Instead 2-pass
@@ -16,11 +17,11 @@ cls
 :: LOG ko LocalAppData root me rakho - Temp साफ करने पर उड़ेगा नहीं
 set "LOG=%LocalAppData%\PC_Cleaner_log.txt"
 if not exist "%LocalAppData%" set "LOG=%USERPROFILE%\PC_Cleaner_log.txt"
-echo [%date% %time%] PC Deep Cleaner v2.3 started > "%LOG%" 2>nul
+echo [%date% %time%] PC Deep Cleaner v2.4 started > "%LOG%" 2>nul
 
 echo.
 echo  ===============================================
-echo   #  PC DEEP CLEANER v2.3 - by Cleaner Page
+echo   #  PC DEEP CLEANER v2.4 - by Cleaner Page
 echo  ===============================================
 echo   Cleaning temp + junk files to make PC fast...
 echo.
@@ -82,7 +83,7 @@ if exist "C:\Windows\Prefetch" (
     echo        Done. ^(kuchh .pf use me honge - skip hona normal hai^)
     set /a TOTAL_OK+=1
 ) else (
-    echo        Skipped (folder nahi mila).
+    echo        Skipped - folder nahi mila.
 )
 
 echo  [4/7] Cleaning Windows Update Cache ...
@@ -158,6 +159,8 @@ if /i "%CLOSEAPP%"=="Y" (
 ) else (
     echo        Skipped - koi app band nahi kiya.
 )
+:: Ab saare set /p prompts ho gaye - ab UTF-8 safe hai
+chcp 65001 >nul 2>&1
 
 popd >nul 2>&1
 echo.
@@ -176,9 +179,9 @@ exit /b 0
 
 :: ============ SUB-ROUTINE: 2-pass AV-friendly clean ============
 :CleanDir
-:: %~1 = folder path, %~2 = label
+rem %~1 = folder path, %~2 = label
 if not exist "%~1" (
-    echo        Skipped (%~2 folder nahi mila).
+    echo        Skipped %~2 - folder nahi mila.
     goto :eof
 )
 :: Pass 1: read-only/hidden/system hatayo, phir delete
