@@ -152,6 +152,25 @@ footer{border-top:1px solid var(--border);margin:22px 0 0;padding:22px 0 34px;co
 .explore-arrow{flex:none;width:38px;height:38px;display:grid;place-items:center;font-size:18px;font-weight:800;
   color:#03130a;background:linear-gradient(135deg,var(--green),var(--cyan));border-radius:50%;transition:transform .2s}
 .foot-note{text-align:center;margin-top:14px;font-size:12px}
+/* SUPPORT LINKS */
+.support-wrap{margin:18px 0 4px;text-align:center}
+.support-title{font-size:15px;font-weight:700;letter-spacing:-.3px;margin-bottom:4px}
+.support-sub{font-size:12.5px;color:var(--muted);margin-bottom:12px}
+.header-links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.header-link{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:13.5px;
+  color:var(--text);background:var(--glass);border:1px solid var(--border);border-radius:100px;padding:9px 16px;transition:.18s}
+.header-link svg{width:18px;height:18px;flex:none}
+.header-link:hover{transform:translateY(-2px);background:rgba(255,255,255,.1);color:#fff}
+.header-link.coffee{border-color:rgba(255,200,60,.4);background:rgba(255,200,60,.08)}
+.header-link.coffee svg{color:#ffcf5c}
+.header-link.coffee:hover{border-color:rgba(255,200,60,.7);box-shadow:0 8px 24px rgba(255,200,60,.2)}
+.header-link.email{border-color:rgba(0,208,255,.4);background:rgba(0,208,255,.07)}
+.header-link.email svg{color:var(--cyan)}
+.header-link.email:hover{border-color:rgba(0,208,255,.7);box-shadow:0 8px 24px rgba(0,208,255,.2)}
+.header-link.upi{border-color:rgba(0,255,136,.4);background:rgba(0,255,136,.07)}
+.header-link.upi svg{color:var(--green)}
+.header-link.upi:hover{border-color:rgba(0,255,136,.7);box-shadow:0 8px 24px rgba(0,255,136,.2)}
+.support-thanks{font-size:12.5px;color:var(--muted);margin-top:12px}
 /* RESPONSIVE — tablet + mobile full width simple */
 body{overflow-x:hidden}
 img,pre,.term{max-width:100%}
@@ -197,6 +216,8 @@ img,pre,.term{max-width:100%}
   .explore-text strong{font-size:13.8px}
   .explore-text small{font-size:11.8px}
   .explore-arrow{width:34px;height:34px;font-size:16px}
+  .header-links{flex-direction:column;align-items:stretch}
+  .header-link{justify-content:center;width:100%}
 }
 @media(max-width:380px){
   .brand{font-size:12.5px}
@@ -208,7 +229,7 @@ img,pre,.term{max-width:100%}
 <body>
 <nav><div class="wrap"><div class="nav-inner">
   <div class="brand"><a class="brand-link" href="./" title="PC Deep Cleaner — Home"><span class="logo">⚡</span> PC Deep Cleaner</a></div>
-  <div class="nav-links"><a href="#demo">Demo</a><a href="#code">Code</a><a href="#how">Steps</a></div>
+  <div class="nav-links"><a href="#demo">Demo</a><a href="#code">Code</a><a href="#how">Steps</a><a href="#support">Support</a></div>
   <a class="btn btn-primary btn-sm" href="clean.bat" download="PC-Cleaner.bat" data-dl>⬇ Download .BAT</a>
 </div></div></nav>
 
@@ -536,6 +557,26 @@ goto :eof
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
   -->
+
+  <div class="support-wrap" id="support">
+    <div class="support-title">💛 Support & Contact</div>
+    <p class="support-sub">Free forever — pasand aaya to support karo, question ho to contact karo</p>
+    <div class="header-links">
+      <a class="header-link coffee" href="https://buymeacoffee.com/surajchauhan" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg>
+        Buy Me a Coffee
+      </a>
+      <a class="header-link email" href="mailto:edev.suraj@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+        edev.suraj@gmail.com
+      </a>
+      <a class="header-link upi" href="upi://pay?pa=8112773132@upi&pn=Suraj%20Chauhan&am=&cu=INR">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg>
+        UPI: 8112773132
+      </a>
+    </div>
+    <p class="support-thanks">Thank you for using PC Deep Cleaner! 🙏</p>
+  </div>
 
 <footer>
   <a class="explore-card" href="https://edevsuraj.github.io/explore-our-apps-and-extensions/" target="_blank" rel="noopener">
