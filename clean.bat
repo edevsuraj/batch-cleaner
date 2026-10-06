@@ -1,13 +1,13 @@
 @echo off
 setlocal EnableExtensions
-title PC Deep Cleaner v2.7 - Fast ^& Safe (AV-Friendly)
+title PC Deep Cleaner v2.8 - Fast ^& Safe (AV-Friendly)
 color 0A
 :: NOTE: chcp yahan NAHI - chcp redirected stdin kha jata hai.
 :: Isliye chcp sabse neeche hai. Script full-auto hai - koi sawal nahi.
 cls
 
 :: =====================================================
-::  PC DEEP CLEANER v2.7 - Safe Temp Cleaner (AV-Friendly)
+::  PC DEEP CLEANER v2.8 - Safe Temp Cleaner (AV-Friendly)
 ::  Deletes temp/cache/junk, never personal files.
 ::  AV ko disable/bypass NAHI karta (Tamper Protection +
 ::  SmartScreen flag se bachne ke liye). Instead 2-pass
@@ -17,11 +17,11 @@ cls
 :: LOG ko LocalAppData root me rakho - Temp साफ करने पर उड़ेगा नहीं
 set "LOG=%LocalAppData%\PC_Cleaner_log.txt"
 if not exist "%LocalAppData%" set "LOG=%USERPROFILE%\PC_Cleaner_log.txt"
-echo [%date% %time%] PC Deep Cleaner v2.7 started > "%LOG%" 2>nul
+echo [%date% %time%] PC Deep Cleaner v2.8 started > "%LOG%" 2>nul
 
 echo.
 echo  ===============================================
-echo   #  PC DEEP CLEANER v2.7 - by Cleaner Page
+echo   #  PC DEEP CLEANER v2.8 - by Cleaner Page
 echo  ===============================================
 echo   Cleaning temp + junk files to make PC fast...
 echo   Temp + junk files saaf ho rahi hain taaki PC fast chale...
@@ -55,11 +55,9 @@ echo   NOTE: AV locked files ko 1-2 sec lock karta hai / AV locks files for 1-2 
 echo         neeche 2-pass + retry cleaning hai / retry cleaning below. Ye normal hai / normal hai.
 echo.
 echo  [!] NOTE: Browser + Office apps apne-aap band honge / apps will auto-close,
-echo      unsaved kaam abhi SAVE kar lo / save unsaved work now - 10 sec hain.
+echo      unsaved kaam SAVE kar liya hoga / save your work first - rukega nahi / no waiting.
 echo.
-echo   10 sec me safai apne-aap shuru hogi / auto-start in 10 sec...
-echo   Rokne ke liye Ctrl+C dabao / press Ctrl+C to stop.
-timeout /t 10 /nobreak
+echo   Safai turant shuru / starting now...
 
 set "TOTAL_OK=0"
 
